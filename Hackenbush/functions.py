@@ -4,11 +4,13 @@ pos = {
     "[]": 0,
 }
 
+
 def mex(K):
     for i in range(0, max(K)+2):
         if not i in K:
             return i
 
+        
 def fall(edges, G):
     falling = []
 
@@ -17,12 +19,14 @@ def fall(edges, G):
             falling.append(edge)
     return falling
 
+
 def fall_nodes(nodes, G):
     falling = []
     for node in nodes:
         if not nx.has_path(G, 0, node) and not nx.has_path(G, node, 0):
             falling.append(node)
     return falling
+
 
 def turn(edges, edge):
     G = nx.MultiDiGraph()
@@ -33,6 +37,7 @@ def turn(edges, edge):
     G.remove_nodes_from(fall_nodes(G.nodes(), G))
     return list(G.edges())
 
+
 def followers(G):
     next = []
     test = list(G.edges())
@@ -40,6 +45,7 @@ def followers(G):
         edges = test.copy()
         next.append(turn(edges, edge))
 
+        
 def double_edges(edges):
     for edge in edges:
         e = edges.copy()
